@@ -1,5 +1,5 @@
 # 코리아 IT 아카데미 국비과정
-
+<a name="readme-top"></a>
 ## spring 
 
 ### Day 01
@@ -220,6 +220,21 @@ annotation
 	@Controller, @RequestMapping, @RequestParam, @ResponseBody 등의 어노테이션을 사용하여 요청을 처리하고 응답을 생성
 ```
 
+* #### @Controller
+```
+@Controller
+	Controller의 역할을 수행 한다고 명시(해당 클래스를 Controller로 사용한다고 Spring FrameWork에 알린다.)
+
+   	필요한 비즈니스 로직을 호출하여 전달할 모델(Model)과 이동할 뷰(View) 정보를 DispatherServlet에 반환 한다.
+
+ 	- Bean으로 등록
+
+ 	- @Component의 구체화 된 어노테이션
+	frontController처럼 쓸 수 있다.
+```
+<img width="900" src="https://github.com/coder-juyeon/Spring/assets/122768623/efc551ae-b8a1-42c4-973d-2f2641e0103c">
+
+
 * #### @RequestMapping
 ```
 	class와 Method를 같이 쓸때
@@ -277,7 +292,94 @@ annotation
 ```
 
 -------------------------------------------------------------------------------------
-### Day 04
+### Day 05
+
+* #### Assertions.asertThat()
+```
+ 	친절한 오류 설명 및 빠른 단위 테스트 가능
+ 	assertj꺼 쓰기
+```
+
+-------------------------------------------------------------------------------------
+### Day 06
+
+* #### REST
+```
+	- Representational State Transfer
+	- 자원, 행위, 표현으로 구성되어 있다.
+	- 언제, 어디서든 누구든 서버에 요청을 보낼 때 URI만으로도 데이터 및 CRUD의 상태를 이해할 수 있도록 설계하는 규칙.
+	- HTTP에 존재하는 모든 자원에 고유한 URI를 부여하여 활용하는 것으로 자원을 정의하고 자원에 대한 주소를 지정하는 방법론
+	- JSON 혹은 XML을 통해 데이터를 주고 받는 것이 일반적 
+	- 네트워크 상에서 Client와 Server사이의 통신 방식 중 하나
+	- HTTP URL을 통해 자원을 명시하고 HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미
+
+	* CRUD Operation
+	Create : 생성(POST)
+	Read : 조회(GET)
+	Update : 수정(PUT)
+	Delete : 삭제(DELETE)
+
+	* RESTful
+	-REST 방식을 따른 시스템
+
+	* RESTful API
+	-설계 방식이 모두 REST 규칙에 의해 작성된 API.
+```
+
+* #### 3-tier
+```
+	3-tier
+	   스프링 프로젝트는 3-tier 방식으로 구성한다.
+
+	   ▶ Presentation Tier - 화면 계층
+	      화면에 보여주는 기술을 사용하는 영역
+
+	   ▶ Buisiness Tier - 비지니스 계층, 로직 계층
+	      순수한 비지니스 로직을 담고 있는 영역
+
+	   ▶ Persistence Tier - 영속 계층, 데이터 계층
+	      데이터를 어떤 방식으로 보관하고, 사용하는 가에 대한 설계가 들어가는 영역
+
+	3-tier의 목적
+		각 영역은 독립적으로 설계되어 
+		나중에 특정 기술이 변하더라도 필요한 부분을 전자제품의 부품처럼 쉽게 교환할 수 있게 하자는 방식이다.
+
+	3-tier의 구조
+		Presentation ↔ Business ↔ Persistence ↔ DBMS
+				↑      ↑         ↑
+			Controller   Service       Mapper
+```
+* #### REST URI 규칙
+```
+	1. 소문자로 작성한다.
+		대문자로 작성시 문제가 발생할 수 있기 때문에 소문자로 작성한다.
+
+	2. 언더바 대신 하이픈을 사용한다.
+		가독성을 높이기 위해서 하이픈으로 구분하는 것이 좋다.
+
+	3. URI 마지막은 슬래시를 작성하지 않는다.	
+		마지막에 작성하는 슬래시는 의미가 없다.		
+
+	4. 계층 관계 표현 시 슬래시 구분자로 사용한다.
+		계층 관계(포함 관계)에서는 슬래시로 구분해준다.
+
+	5. 동사는 작성하면 안된다.
+		행위는 URI로 표현하지 않고 HTTP METHOD를 통해 전달한다.
+	
+	6. 파일 확장자는 포함시키지 않는다.
+		파일 확장자는 URI로 표현하지 않고 Header의 Content-Type을 사용하여
+		body의 내용을 처리하도록 설계한다.
+
+	7. 데이터를 대표할 때에는 명사를 사용하지만, 상태를 대표할 때에는 동사를 허용한다.
+		http://www.app.com/writing (X)
+		http://www.app.com/write (O)		
+
+	8. URI에 사용되는 영어단어는 복수로 작성한다.
+
+```
+
+-------------------------------------------------------------------------------------
+### Day 07
 
 * #### 제목
 ```
@@ -286,8 +388,13 @@ annotation
 입
 력
 ```
-
-
+* #### 제목
+```
+내
+용
+입
+력
+```
 
 
 ### Built With
