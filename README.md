@@ -1,6 +1,5 @@
 # 코리아 IT 아카데미 국비과정
 
-<!-- ABOUT THE PROJECT -->
 ## spring 
 
 ### Day 01
@@ -106,6 +105,10 @@
 	※ 비지니스 로직: 서비스를 개발하기 위한 소스코드 및 알고리즘
 ```
 
+<img width="500" src ="https://github.com/coder-juyeon/Spring/assets/122768623/1ee3c14b-b6dc-432b-a8aa-4387d8c36ab8">
+<img width="500" src ="https://github.com/coder-juyeon/Spring/assets/122768623/2cea959c-d094-4328-aa52-97b58ce4e58b">
+
+
 * #### ▶ 트랜젝션의 지원
 ```
 	트랜젝션 작업의 최소 단위
@@ -129,34 +132,160 @@
 	6) build.gradel			: 라이브러리 관리
 	7) application.yml		: Spring의 모든 설정 야멜
 ```
-
-* #### 제목
-```
-내
-용
-입
-력
-```
-
-* #### 제목
-```
-내
-용
-입
-력
-```
-
-* #### 제목
-```
-내
-용
-입
-력
-```
-  
     
 -------------------------------------------------------------------------------------
+### Day 02
 
+* #### 필드주입
+```
+	사용 방법이 매우 편하다는 장점이 있다.
+	주입된 객체를 불변(immutable)상태로 만들 수 없기 때문에 외부에서 수정될 위험이 있다.
+	순환 참조 발생시 Application 동작 시점과 Runtime 시점 중 필드주입은 RunTime 시점에 해당하기 때문에
+	메모리에 계속 할당되고 StackOverFlow가 발생했다. 하지만 2.6버전 이상부터는 Application 동작 시점에서 잡힌다.
+	단위테스트에서는 필드주입만 사용
+	생성자 -> 필드주입 -> 세터주입
+```
+-------------------------------------------------------------------------------------
+### Day 03
+
+* #### Spring MVC(Front-Controller Pattern)
+```
+	MVC (Model-View-Controller) 아키텍처 패턴을 기반으로 하는 웹 개발
+	
+				HandlerMaping
+	REQUEST		  ①	      ②↕	   ③		       ④
+			  ↔	DispatcherServlet   ↔  HandlerAdapter   ↔  Controller
+	RESPONSE	  ⑦	⑥↕	     ⑤↕
+			View	ViewResolver
+			   ↕
+			HTML 및 기타
+```
+
+* #### Spring MVC 패턴의 특징
+```
+	- HttpServletRequest, HttpServletResponse를 거의 사용할 필요 없이 구현 가능
+	- 다양한 타입의 파라미터 처리, 다양한 타입의 리턴 타입 사용 가능
+	- Get 방식, POST 방식 등 전송 방식에 대한 처리를 어노테이션으로 처리 가능
+	- 상속/인터페이스 방식 대신 어노테이션으로만 설정 가능
+```
+
+* #### 타임리프
+```
+	'템플릿 엔진'의 일종. html 태그에 속성을 추가해 페이지에 동적으로 값을 추가하거나 처리할 수 있음
+	▶ html 태그에 속성 추가
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+```
+
+* #### annotation 사용법
+```
+annotation
+	클래스와 메서드에 추가하여 다양한 기능을 부여하는 역할
+	Spring Framework는 해당 클래스가 어떤 역할인지 정함
+	Bean을 주입
+	자동으로 getter나 setter를 생성
+	특별한 의미를 부여하거나 기능 부여
+	
+	1. Bean 등록
+	2. 의존성 주입(Dependency Injection)
+	3.트랜잭션 관리
+	4. MVC 웹 애플리케이션 개발
+```
+
+* #### ▶ Bean등록
+```
+@Bean
+	Bean은 스프링 프레임워크에서 관리되는 객체를 의미
+	@Bean Annotation은 개발자가 제어가 불가능한 외부 라이브러리와 같은 것들을 Bean으로 만들 때 사용
+	스프링 컨테이너에 Bean으로 등록하기 위해
+	예) @Component, @Service, @Repository, @Controller
+```
+
+* #### ▶ 의존성 주입(Dependency Injection)
+```
+	객체 간의 관계를 자동으로 설정하기 위해
+	@Autowired
+```
+
+* #### ▶ 트랜잭션 관리
+```
+트랜잭션 
+	데이터베이스의 상태를 변경하는 일련의 작업을 하나의 논리적인 단위로 묶은 것.
+	이 작업들은 모두 성공적으로 수행되어야 하며, 그렇지 않을 경우 이전 상태로 롤백
+	@Transactional
+```
+
+* #### ▶ MVC 웹 애플리케이션 개발
+```
+	스프링 MVC를 사용하여 웹 애플리케이션을 개발할 때 어노테이션을 활용
+	@Controller, @RequestMapping, @RequestParam, @ResponseBody 등의 어노테이션을 사용하여 요청을 처리하고 응답을 생성
+```
+
+* #### @RequestMapping
+```
+	class와 Method를 같이 쓸때
+	예) @RequestMapping("/ex/")
+	공통적인 url을 설정해줌
+```
+
+* #### @ModelAttribute
+```
+	@ModelAttribute("name")String name
+	html에서 jstl을 쓰기 위해
+	매개변수에 주기
+	예)
+	@GetMapping("ex04")
+	    public void ex04(String name, Model model) {
+		model.addAttribute("name", name);
+		log.info(name);
+	}
+
+	= (위와 아래가 같음)
+
+	@GetMapping("ex04")
+	    public void ex04(@ModelAttribute("name")String name) {
+		log.info(name);
+	}
+```
+
+* #### @RequestParam
+```
+@RequestParam
+	1대1 매핑
+	화면에서 받을 파라미터 이름과 자바에서 받을 매개변수 이름이 다를때 사용한다.
+	예) 파라미터는 address(화면) 매개변수는 city면
+	    @RequestParam("address") String city
+    
+@RequestParam, @ModelAttribute의 차이점
+	modelAttribute은 파라미터를 객체 타입으로 받을 수 있지만
+	RequestParam은 1대1 매핑으로 파라미터에 데이터 하나만 가져올 수 있다.
+
+	예)
+	public class UserSearchForm() {
+		private int id;
+		private String name;
+		private String email;
+		private String phone;
+	}
+
+	@ModelAttribute의 경우
+	public String getTestPage(@ModelAttribute UserSearchForm userSearchForm){
+	}
+
+	@RequestParam의 경우
+	public String getTestPage(@RequestParam int id, @RequestParam String name, @RequestParam String email,@RequestParam String phone){
+	}
+```
+
+-------------------------------------------------------------------------------------
+### Day 04
+
+* #### 제목
+```
+내
+용
+입
+력
+```
 
 
 
