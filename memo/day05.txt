@@ -1,0 +1,5 @@
+검증, Assertions.asertThat() : 친절한 오류 설명 및 빠른 단위 테스트 가능
+				assertj꺼 쓰기
+
+@BeforeEach
+

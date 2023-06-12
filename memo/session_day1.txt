@@ -1,0 +1,60 @@
+세션
+	JWT -> 세션저장 안하는 방식 토큰
+	security
+
+스프링 세션 문제점
+	서버 증설시 세션 정보 공유 불가능
+
+rest로 설계하는 이유
+	타언어, 타서버와 세션이 연결이 되야됨
+
+L4 switch
+	동일한 ip로 연결해도 분배기 역할
+--> 클라우드 인프라 구축 (클러스터링)
+
+Redis
+	no sql, no schema
+	key, value
+	속도 빠름
+
+<로그인 repository>
+public Optional<Member> login(String memberId, String memberPassword){
+	query.
+}
+
+type에 ErrorCode
+memberSErvieImpl -> membertype.Role어쩌고 해주기
+exception 패키지 LoginFaileExcpetion extends RuntimeException
+		CustomerAuthenticationExcpetion 
+controller에 login session.setAttribute() 3개, setMaxInactiveInterval 초단위 0 또는 -1일 경우 세션 무한 유지
+		join과 login RedireView로
+DTO에서 memebrBirth에 @DateTimeFormat(pattern = "yyyy.MM.dd")'
+memebrBirth -> localDate로 쓰기
+
+redis_cli_exe에서
+keys *
+	1)이 키값
+hkeys 
+hgetAll "세션"
+
+
+-> 세션
+자꾸 오류나면 
+디비버의 birth 설정
+※ 오라클 날짜 형식 지정
+SELECT SYS_CONTEXT('USERENV', 'NLS_DATE_FORMAT') FROM DUAL;
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY/MM/DD';
+
+controller
+	GlobalExceptionHandler 2개만 있으면 됨
+	@ControllerAdvice
+
+config
+	WebMvcConfig
+	.addPathPatterns 추가해주기
+
+interceptor
+	@Component
+	AuthIntercaptor
+	return true -> controller까지 감
+		false -> 멈춤

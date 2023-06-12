@@ -1,0 +1,29 @@
+filelist->Array 바꿈
+array를 전역변수로 선언하고
+file change 될때
+계속 array에 push
+fileList 타입으로 다시 바꿔
+
+fileList를 서버에 전송
+
+globalThis.arrayFile = new Array();
+
+PostMappping
+-> boardDTO
+
+
+3-tier(Mapper, DAO, Service, Controller, View)
+ERD
+
+팀장: ERD, mapper.xml, Mapper, DAO, Service
+mapper.xml, Mapper name space로 연결 
+mapper 인터페이스 어노테이션만 만들기
+DAO 어노테이션
+부팀장: VO, config.xml, View, 단위테스트
+
+config -> 알리야스
+View -> intellij로 바꿔주고 헤더푸터 연결
+onload -> 프래그먼트로 변경
+
+설계된 거 보여주기
+------일요일까지-------

@@ -1,0 +1,42 @@
+응답 페이지에서만 사용 가능: Flash
+화면에 바로 출력
+url에 카멜표기법 X
+-> -로 쓰고 명사로 쓰기
+
+soutv + tab
+-> system.out.println("name: " + name) 형식이 자동 작성됨
+
+@Configuration
+@Bean
+@ConfigurationProperties
+
+## Hikari CP
+spring:
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul
+      username: root
+      password: 1234
+
+sqlSessionFactoryBean.setMapperLocations();
+        sqlSessionFactoryBean.setConfigLocation();
+단수복수조심
+
+
+<springBoot 헤더 푸터 연결법>
+fix 이름
+header, footer 둘다 넣기
+header, footer id 주기
+-> controller 타고 가야 됨
+
+
+
+    <header id="main-header" th:fragment="mainHeader (param1)">
+        <h1 th:text="${param1}"></h1>
+    </header>
+
+<!--    <th:block th:replace="~{/fix.html :: #main-header}"/>-->
+    <header th:insert="~{/fix.html :: mainHeader ('전달된 값')}"></header>
+    <h1>본문</h1>
+    <th:block th:replace="~{/fix.html :: #main-footer}"/>

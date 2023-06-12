@@ -1,0 +1,81 @@
+// Interceptor
+// 클라이언트의 전체 요청을 가로채어 원하는 시점에 원하는 작업을 수행하도록 해준다.
+// return true일 경우, 다음 절차로 넘어가지만, false일 경우 넘어가지 않는다.
+
+// preHandle
+// 컨트롤러 수행 전
+
+
+//    postHandle
+//    컨트롤러 수행 후, 화면 이동 전
+
+//    afterCompletion
+//  다 하고 나서
+
+AuthInterceptor 랑 WebMvcConfig랑 세트 (session 프로젝트에 있음)
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+//        registry를 통해 제작한 Interceptor를 전달한다.
+        registry.addInterceptor(authInterceptor)
+                .addPathPatterns("/board/**") // 인터셉터 동작
+                .order() //interceptor 우선 순위를 결정하며, 기본 값은 0 이고, 숫자가 낮을수록 우선 순위가 높다.
+                .excludePathPatterns("/member/**"); // 인터셉터 미동작
+    }
+
+-> registry에 추가
+
+@ControllerAdvice
+-> ExceptionHandler 만들어주기
+
+controller에 login이 없다.
+
+
+<시큐리티>
+config
+	SecurityConfig
+	-> @EnableWebSecurity
+	-> 일단 컨트롤러 보면서 모든 경로 다 써주기 (얘는 수정해야함)
+	@Bean
+	PasswordEncoder() 비밀번호 암호화
+
+	@Bean
+	public WebSecurityCustomizer()
+	WebSecurity에서 관여하지 않을 경로
+	return web -> web.ignoring()
+			.mvcMatchers() 
+			.requestMatchers
+	remember-me 
+	-> html의 자동로그인 name과 맞춰주기
+
+handler 패키지
+	AccessDeniedHamdlerImpl
+	-> 어디로 보내줄건지
+
+인가 (접근권한)쪽은 403, 인증 401
+	@Component 붙여주기
+
+SecurityConfig에 filter들 주입해주기
+
+session이 아닌 토큰으로 id
+
+provider
+	userDetail implements UserDetails
+	userName 은 id 헷갈리면 안됨
+	@Component
+	@Builder -> 서비스에서 리턴할것
+	userDetailService로 주입
+
+기존의 memberService에 extends UserDetailService
+
+MemberServiceImpl
+	loadUserByUserName()
+
+	join
+	passwordEncoder 
+
+Controller
+@GetMapping(/list)
+public void list(@AuthenticationPrincipal UserDetail userDetail){
+	userDetail.getMemberId();
+}

@@ -1,0 +1,28 @@
+Spring MVC(Front-Controller Pattern)
+
+Spring MVC 패턴의 특징
+	- HttpServletRequest, HttpServletResponse를 거의 사용할 필요 없이 구현 가능
+	- 다양한 타입의 파라미터 처리, 다양한 타입의 리턴 타입 사용 가능
+	- Get 방식, POST 방식 등 전송 방식에 대한 처리를 어노테이션으로 처리 가능
+	- 상속/인터페이스 방식 대신 어노테이션으로만 설정 가능
+----------------------------------------------------------------------------
+alt+shift+마우스좌클릭
+
+build gradle 복붙
+application.yml
+server.port 10000
+
+request와 response 뭔지 알기
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+-> 타임리프 쓰려면 html에 추가
+
+@GetMapping("ex04")
+    public void ex04(String name, Model model) {
+        model.addAttribute("name", name);
+        log.info(name);
+//      = 매개변수에 @ModelAttribute("name")String name
+    }
+
+//    파라미터는 address(화면) 매개변수는 city
+//    @RequestParam("address") String city
